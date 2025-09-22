@@ -8,14 +8,18 @@
 
 class Kortbunke
 {
+    // Laver kortbunken
     List<Kort> kortbunke = new List<Kort>();
+    // Tilfældigheds variabel
     private Random rng = new Random();
 
     public Kortbunke()
     {
+        // Lister med rank og deres værdier
         string[] ranks = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" };
         int[] værdier = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 1 };
 
+        // Tilføjer kulør til de forskellige kort i bunken
         foreach (Kulør k in Enum.GetValues(typeof(Kulør)))
         {
             for (int i = 0; i < ranks.Length; i++)
@@ -23,11 +27,14 @@ class Kortbunke
                 kortbunke.Add(new Kort(k, ranks[i], værdier[i]));
             }
         }
+
         BlandKort();
     }
 
+    // Funktion der blander kort værdierne tilfældigt
     public void BlandKort()
     {
+        // Tager kortene én efter én og blander sammen med tilfældige andre kort
         for (int i = kortbunke.Count - 1; i > 0; i--)
         {
             int j = rng.Next(i + 1);
@@ -35,10 +42,13 @@ class Kortbunke
         }
     }
 
+    // Funktion der trækker kort
     public Kort TrækKort()
     {
+        // Lille exception handling
         if (kortbunke.Count == 0) throw new InvalidOperationException("Kortbunken er tom.");
         var k = kortbunke[0];
+        // Fjerner kortet fra bunken, så det ikke trækkes igen
         kortbunke.RemoveAt(0);
         return k;
     }
