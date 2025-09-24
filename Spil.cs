@@ -12,19 +12,18 @@ class Spil
     private Spiller dealer = new Spiller("Dealer");
     private Spiller? spiller;
 
-
     public void Run()
     {
-
         while (true)
         {
             Console.Clear();
-            Console.WriteLine("🃏 BlackJackMachine 1.0 🃏");
+            Console.WriteLine("🎴 BlackJackMachine 1.0 🃏");
             Console.WriteLine("Vælg en mulighed: (1-3)");
             Console.WriteLine("1. Nyt spil");
             Console.WriteLine("2. Se regler");
             Console.WriteLine("3. Afslut\n");
             int valg = Convert.ToInt32(Console.ReadLine());
+            
             switch (valg)
             {
                 case 1:
@@ -50,12 +49,12 @@ class Spil
                     break;
                 case 2:
                     Console.Clear();
-                    Console.WriteLine("Målet er at få en håndværdi tættere på 21 end dealeren, uden at overskride 21.");
-                    Console.WriteLine("Kort 2-10 har deres pålydende værdi, billedkort (J, Q, K) giver 10 point, og et es (A) kan være 1 eller 11, afhængigt af hvad der er bedst for hånden.");
-                    Console.WriteLine("Hvis spilleren overstiger 21 (bust), taber de øjeblikkeligt.");
-                    Console.WriteLine("Når spilleren vælger stand, trækker dealeren kort, indtil hånden har en værdi på mindst 17.");
-                    Console.WriteLine("Hvis dealeren overstiger 21, vinder spilleren.");
-                    Console.WriteLine("Hvis ingen går bust, vinder den med den højeste værdi. Uafgjort resulterer i en push (ingen vinder)");
+                    Console.WriteLine("Standardregler for Blackjack: ");
+                    Console.WriteLine("- Målet er at få en håndværdi tættere på 21 end dealeren, uden at overskride 21.");
+                    Console.WriteLine("- Kort 2-10 har deres pålydende værdi, billedkort (J, Q, K) giver 10 point, og et es (A) kan være 1 eller 11, afhængigt af hvad der er bedst for hånden.");
+                    Console.WriteLine("- Hvis spillereneller dealeren overstiger 21 (bust), taber de øjeblikkeligt.");
+                    Console.WriteLine("- Når spilleren vælger stand, trækker dealeren kort, indtil hånden har en værdi på mindst 17.");
+                    Console.WriteLine("- Hvis ingen går bust, vinder den med den højeste værdi. Uafgjort resulterer i en push (ingen vinder)");
                     Console.WriteLine("\nTryk på en tast for at fortsætte..");
                     Console.ReadKey();
                     Console.Clear();
@@ -85,8 +84,8 @@ class Spil
         spiller.Hånd.Add(kortbunke.TrækKort());
         dealer.Hånd.Add(kortbunke.TrækKort());
 
-        Console.WriteLine($"\nDealers hånd: {dealer.Hånd.kortPåHånden[1]} 🂠");
-        Console.WriteLine($"{spiller.Navn}s hånd: {spiller.Hånd} ({spiller.Hånd.VinderVærdi()})");
+        Console.WriteLine($"\n  Dealers hånd: {dealer.Hånd.kortPåHånden[0]} 🂠");
+        Console.WriteLine($"  {spiller.Navn}s hånd: {spiller.Hånd} ({spiller.Hånd.VinderVærdi()})");
 
         // check for blackjack
         if (spiller.Hånd.ErBlackjack() || dealer.Hånd.ErBlackjack())
@@ -100,7 +99,6 @@ class Spil
             {
                 Console.WriteLine("Dealer har Blackjack! Du taber! 😞");
             }
-            //TODO: else if ingen har bust, men højeste kort vinder
             else
             {
                 Console.WriteLine("Begge har Blackjack! Uafgjort! 🤝");
@@ -111,13 +109,13 @@ class Spil
         bool spillerHandling = false;
         while (!spillerHandling)
         {
-            Console.WriteLine("Handling? (h)it / (s)tand \n");
-            string handling = Console.ReadLine()?.Trim().ToLower() ?? "s";
+            Console.WriteLine("Handling? (hit/stand)");
+            string handling = Console.ReadLine()?.Trim().ToLower() ?? "stand";
 
-            if (handling == "h")
+            if (handling == "hit")
             {
                 spiller.Hånd.Add(kortbunke.TrækKort());
-                Console.WriteLine($"{spiller.Navn}s hånd: {spiller.Hånd} ({spiller.Hånd.VinderVærdi()})");
+                Console.WriteLine($"\n  {spiller.Navn}s hånd: {spiller.Hånd} ({spiller.Hånd.VinderVærdi()})");
                 if (spiller.Hånd.ErBust())
                 {
                     Console.WriteLine("Bust! Du tabte 🙁");
@@ -135,12 +133,12 @@ class Spil
         {
             var k = kortbunke.TrækKort();
             dealer.Hånd.Add(k);
-            Console.WriteLine($"Dealer trak: {k} ({dealer.Hånd.VinderVærdi()})");
+            Console.WriteLine($"  Dealer trak: {k} ({dealer.Hånd.VinderVærdi()})");
         }
 
         int spillerVærdi = spiller.Hånd.VinderVærdi();
         int dealerVærdi = dealer.Hånd.VinderVærdi();
-        Console.WriteLine($"\nResultat: {spiller.Navn} {spillerVærdi} - Dealer {dealerVærdi}");
+        Console.WriteLine($"\nResultat: {spiller.Navn} {spillerVærdi} vs Dealer {dealerVærdi}");
 
         if (dealer.Hånd.ErBust() || spillerVærdi > dealerVærdi)
         {
@@ -158,6 +156,6 @@ class Spil
 
     public void DealerHånd()
     {
-        Console.WriteLine($"Dealers hånd: {dealer.Hånd} ({dealer.Hånd.VinderVærdi()})");
+        Console.WriteLine($"\n  Dealers hånd: {dealer.Hånd} ({dealer.Hånd.VinderVærdi()})");
     }
 }
