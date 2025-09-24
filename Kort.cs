@@ -24,10 +24,10 @@ class Kort
         // Lægger kulør symbol til string
         string symbol = Kulør switch
         {
-            Kulør.Spar => "♠",
-            Kulør.Klør => "♣",
-            Kulør.Hjerter => "♥",
-            Kulør.Ruder => "♦",
+            Kulør.Spar => "♠️",
+            Kulør.Klør => "♣️",
+            Kulør.Hjerter => "♥️",
+            Kulør.Ruder => "♦️",
             _ => "?"
         };
         // returnere f.eks. "5♠", "Q♥", etc
