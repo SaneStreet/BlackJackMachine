@@ -11,28 +11,32 @@ class Spil
     private Kortbunke kortbunke = new Kortbunke();
     private Spiller dealer = new Spiller("Dealer");
     private Spiller? spiller;
+    string titel = "🎴 BlackJackMachine 1.0 🃏\n"; 
 
     public void Run()
     {
         while (true)
         {
             Console.Clear();
-            Console.WriteLine("🎴 BlackJackMachine 1.0 🃏");
+            Console.WriteLine(titel);
             Console.WriteLine("Vælg en mulighed: (1-3)");
-            Console.WriteLine("1. Nyt spil");
-            Console.WriteLine("2. Se regler");
-            Console.WriteLine("3. Afslut\n");
+            Console.WriteLine(" 1. Nyt spil");
+            Console.WriteLine(" 2. Se regler");
+            Console.WriteLine(" 3. Afslut\n");
             int valg = Convert.ToInt32(Console.ReadLine());
-            
+
             switch (valg)
             {
                 case 1:
+                    Console.Clear();
+                    Console.WriteLine(titel);
                     Console.WriteLine("Navn på spiller?: \n");
                     string? nySpiller = Console.ReadLine();
-                    if (nySpiller == "")
+                    if (nySpiller == "" || nySpiller == null)
                     {
                         nySpiller = "Spiller";
                     }
+
                     spiller = new Spiller(nySpiller);
 
                     Console.Clear();
@@ -49,6 +53,7 @@ class Spil
                     break;
                 case 2:
                     Console.Clear();
+                    Console.WriteLine(titel);
                     Console.WriteLine("Standardregler for Blackjack: ");
                     Console.WriteLine("- Målet er at få en håndværdi tættere på 21 end dealeren, uden at overskride 21.");
                     Console.WriteLine("- Kort 2-10 har deres pålydende værdi, billedkort (J, Q, K) giver 10 point, og et es (A) kan være 1 eller 11, afhængigt af hvad der er bedst for hånden.");
@@ -57,9 +62,9 @@ class Spil
                     Console.WriteLine("- Hvis ingen går bust, vinder den med den højeste værdi. Uafgjort resulterer i en push (ingen vinder)");
                     Console.WriteLine("\nTryk på en tast for at fortsætte..");
                     Console.ReadKey();
-                    Console.Clear();
                     break;
                 case 3:
+                    Console.Clear();
                     Console.WriteLine("Tak for nu. Byebye. 👋");
                     Environment.Exit(0);
                     break;
@@ -74,7 +79,10 @@ class Spil
 
     public void SpilRunde()
     {
-        spiller.TømHånd();
+        if (spiller != null)
+        {
+            spiller.TømHånd();
+        }
         dealer.TømHånd();
         kortbunke = new Kortbunke();
 
@@ -85,7 +93,7 @@ class Spil
         dealer.Hånd.Add(kortbunke.TrækKort());
 
         Console.WriteLine($"\n  Dealers hånd: {dealer.Hånd.kortPåHånden[0]} 🂠");
-        Console.WriteLine($"  {spiller.Navn}s hånd: {spiller.Hånd} ({spiller.Hånd.VinderVærdi()})");
+        Console.WriteLine($"  {spiller.Navn}'s hånd: {spiller.Hånd} ({spiller.Hånd.VinderVærdi()})");
 
         // check for blackjack
         if (spiller.Hånd.ErBlackjack() || dealer.Hånd.ErBlackjack())
@@ -115,7 +123,7 @@ class Spil
             if (handling == "hit")
             {
                 spiller.Hånd.Add(kortbunke.TrækKort());
-                Console.WriteLine($"\n  {spiller.Navn}s hånd: {spiller.Hånd} ({spiller.Hånd.VinderVærdi()})");
+                Console.WriteLine($"\n  {spiller.Navn}'s hånd: {spiller.Hånd} ({spiller.Hånd.VinderVærdi()})");
                 if (spiller.Hånd.ErBust())
                 {
                     Console.WriteLine("Bust! Du tabte 🙁");
@@ -129,11 +137,11 @@ class Spil
         }
         DealerHånd();
 
-        while (dealer.Hånd.VinderVærdi() < 21)
+        while (dealer.Hånd.VinderVærdi() < 17)
         {
             var k = kortbunke.TrækKort();
             dealer.Hånd.Add(k);
-            Console.WriteLine($"  Dealer trak: {k} ({dealer.Hånd.VinderVærdi()})");
+            Console.WriteLine($"   Dealer trak: {k} ({dealer.Hånd.VinderVærdi()})");
         }
 
         int spillerVærdi = spiller.Hånd.VinderVærdi();
