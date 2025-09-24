@@ -4,7 +4,7 @@
     Indeholder spillets flow og alt logik til hvert spil
 */
 
-Console.WriteLine("This is only the beginning");
+Console.WriteLine("This is only the beginning\n");
 
 /*
 Klasser:
@@ -21,3 +21,5 @@ Funktioner i flow:
     DealerHånd  - Hvis dealers hånd til spiller
 */
 
+var spil = new Spil();
+spil.Run();
