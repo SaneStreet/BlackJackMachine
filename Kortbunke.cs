@@ -10,12 +10,12 @@ class Kortbunke
 {
     // Laver kortbunken
     List<Kort> kortbunke = new List<Kort>();
-    // Tilfældigheds variabel
+    // Random generator
     private Random rng = new Random();
 
     public Kortbunke()
     {
-        // Lister med rank og deres værdier
+        // Lister med rang og værdier til kortene
         string[] ranks = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" };
         int[] værdier = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 1 };
 

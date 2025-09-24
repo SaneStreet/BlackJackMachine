@@ -3,7 +3,7 @@
     Indeholder logik til at finde kulør på de forskellige kort
 */
 
-// Enums til Kulør
+// Enums til Kulør varianter
 enum Kulør { Klør, Spar, Hjerter, Ruder }
 class Kort
 {
@@ -11,6 +11,7 @@ class Kort
     public string Rank { get; }
     public int Værdi { get; }
 
+    // Instantiere Kulør med rang og værdi
     public Kort(Kulør kulør, string rank, int værdi)
     {
         Kulør = kulør;
@@ -20,6 +21,7 @@ class Kort
 
     public override string ToString()
     {
+        // Lægger kulør symbol til string
         string symbol = Kulør switch
         {
             Kulør.Spar => "♠",
@@ -28,6 +30,7 @@ class Kort
             Kulør.Ruder => "♦",
             _ => "?"
         };
+        // returnere f.eks. "5♠", "Q♥", etc
         return $"{Rank}{symbol}";
     }
 }

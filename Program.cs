@@ -14,3 +14,10 @@ Klasser:
     Kortbunke - Identificere bunken og blandingen af kort
 */
 
+/*
+Funktioner i flow:
+    SpilRunde   - flow og logik til 1 spil runde
+    Run         - Selve flowet til et helt spil
+    DealerHånd  - Hvis dealers hånd til spiller
+*/
+
