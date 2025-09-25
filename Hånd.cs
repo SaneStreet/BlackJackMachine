@@ -13,7 +13,8 @@ class Hånd()
     // Lægger kort på hånden
     public void Add(Kort k) => kortPåHånden.Add(k);
 
-    // Udregn bedste værdi for spiller. Anse altid Es som værende 1, medmindre 11 passer bedre
+    /* Funktion der udregner bedste værdi for spiller. 
+    Anse altid Es som værende 1, medmindre 11 passer bedre */
     public int VinderVærdi()
     {
         // Nuværende sum på hånden og antallet af Esser ("A")

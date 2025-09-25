@@ -1,4 +1,4 @@
-# 🎲 Blackjack Console App
+# 🎲 BlackJack Console App
 
 En simpel konsolbaseret implementering af Blackjack skrevet i C#.
 Projektet er struktureret i klasser, der matcher de vigtigste koncepter i spillet (kort, kortbunke, hånd, spiller og dealer).
@@ -8,18 +8,17 @@ Projektet er struktureret i klasser, der matcher de vigtigste koncepter i spille
 * Klassisk Blackjack med spiller mod dealer
 * Kort blandes med Fisher-Yates shuffle
 * Dynamisk beregning af håndens værdi (inkl. esset som 1 eller 11)
-* Ingen saldo/pengehåndtering – kun fokus på selve spillets logik
 * Simpel konsolbrugerflade
 
 ## 🏗️ Projektstruktur
-BlackjackApp/
+<pre> ```BlackJackMachine/
 │
 ├── Program.cs        # Spillets entrypoint
-├── Kort.cs           # Repræsenterer et kort (kulør + rang)
+├── Kort.cs           # Repræsenterer et kort (kulør og rang)
 ├── Kortbunke.cs      # Kortbunke med blanding og træk
-├── Hånd.cs           # En hånd af kort + pointberegning
-├── Spiller.cs        # Spiller (inkl. handlinger som 'Hit' og 'Stand')
-└── Spil.cs           # Spillets flow og logik dertil
+├── Hånd.cs           # Pointberegning af kort på hånden
+├── Spiller.cs        # Håndtere spillere og hvilke kort der er på
+└── Spil.cs           # Spillets flow og logik dertil``` </pre>
 
 
 ## ▶️ Installation og Kørsel
@@ -41,6 +40,7 @@ dotnet run
 * Spilleren kan vælge at Hit (tage et kort) eller Stand (stå).
 * Dealeren trækker kort indtil de har mindst 17 point.
 * Den, der kommer tættest på 21 uden at gå over, vinder.
+Mere uddybende regler i selve spillet.
 
 ## 🔮 Mulige fremtidige udvidelser
 
