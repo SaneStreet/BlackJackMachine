@@ -5,12 +5,14 @@
 */
 
 #nullable enable
+using System.Runtime.InteropServices;
+
 class Spil
 {
     private Kortbunke kortbunke = new Kortbunke();
     private Spiller dealer = new Spiller("Dealer");
     private Spiller? spiller;
-    string titel = "🎴 BlackJackMachine 1.0 🃏\n"; 
+    string titel = "🎴 Velkommen til Blackjack 🤡\n"; 
 
     // Funktionen der kører hele programmet
     public void Run()
@@ -24,62 +26,73 @@ class Spil
             Console.WriteLine(" 1. Nyt spil");
             Console.WriteLine(" 2. Se regler");
             Console.WriteLine(" 3. Afslut\n");
-            int valg = Convert.ToInt32(Console.ReadLine());
+            string? spillerValg = Console.ReadLine();
 
-            // Switch case der håndtere valg fra menuen
-            switch (valg)
+            /* Prøver at konvertere strengen "spillerValg", til et helt tal.
+               Og hvis det lykkes, så gem det i "valg" */
+            if (int.TryParse(spillerValg, out int valg))
             {
-                // Starter spillet og spilrunder
-                case 1:
-                    Console.Clear();
-                    Console.WriteLine(titel);
-                    Console.WriteLine("Navn på spiller?: \n");
-                    string? nySpiller = Console.ReadLine();
-                    if (nySpiller == "" || nySpiller == null)
-                    {
-                        nySpiller = "Spiller";
-                    }
-
-                    spiller = new Spiller(nySpiller);
-
-                    Console.Clear();
-                    bool iSpil = true;
-
-                    while (iSpil)
-                    {
-                        SpilRunde();
-
-                        Console.WriteLine("\nVil du spille igen? (J/N): ");
-                        string nytspil = Console.ReadLine()?.Trim().ToLower() ?? "n";
-                        iSpil = nytspil == "j";
+                // Switch case der håndtere valg fra menuen
+                switch (valg)
+                {
+                    // Starter spillet og spilrunder
+                    case 1:
                         Console.Clear();
-                    }
-                    break;
-                // Fremviser reglerne for Blackjack
-                case 2:
-                    Console.Clear();
-                    Console.WriteLine(titel);
-                    Console.WriteLine("Regler for Blackjack: ");
-                    Console.WriteLine("- Målet er at få en håndværdi tættere på 21 end dealeren, uden at overskride 21.");
-                    Console.WriteLine("- Kort 2-10 har deres pålydende værdi, billedkort (J, Q, K) giver 10 point, og et es (A) kan være 1 eller 11, afhængigt af hvad der er bedst for hånden.");
-                    Console.WriteLine("- Hvis spillereneller dealeren overstiger 21 (bust), taber de øjeblikkeligt.");
-                    Console.WriteLine("- Når spilleren vælger stand, trækker dealeren kort, indtil hånden har en værdi på mindst 17.");
-                    Console.WriteLine("- Hvis ingen går bust, vinder den med den højeste værdi. Uafgjort resulterer i en push (ingen vinder)");
-                    Console.WriteLine("\nTryk på en tast for at fortsætte..");
-                    Console.ReadKey();
-                    break;
-                // Afslutter programmet
-                case 3:
-                    Console.Clear();
-                    Console.WriteLine("Tak for nu. Byebye. 👋");
-                    Environment.Exit(0);
-                    break;
-                // Ved andre valg end mulighederne, sender fejlbesked
-                default:
-                    Console.WriteLine("Ugyldigt valg. Tryk på en tast for at fortsætte..");
-                    Console.ReadLine();
-                    break;
+                        Console.WriteLine(titel);
+                        Console.WriteLine("Navn på spiller?: \n");
+                        string? nySpiller = Console.ReadLine();
+                        // tjekker om spiller.Navn er tomt eller null, og tilføjer et generelt navn hvis det er
+                        if (string.IsNullOrWhiteSpace(nySpiller))
+                        { nySpiller = "Spiller"; }
+
+                        spiller = new Spiller(nySpiller);
+                        Console.Clear();
+                        bool iSpil = true;
+                        // While løkke der kører så længe der spilles
+                        while (iSpil)
+                        {
+                            SpilRunde();
+                            // Trimmer strengen med svaret, så det altid kan læses
+                            Console.WriteLine("\nVil du spille igen? (J/N): ");
+                            string nytspil = Console.ReadLine()?.Trim().ToLower() ?? "n";
+                            // Så længe iSpil er true, så genstarter spilrunde
+                            iSpil = nytspil == "j";
+                            Console.Clear();
+                        }
+                        break;
+                    // Fremviser reglerne for Blackjack
+                    case 2:
+                        Console.Clear();
+                        Console.WriteLine(titel);
+                        Console.WriteLine("Regler for Blackjack: ");
+                        Console.WriteLine("- Målet er at få en håndværdi tættere på 21 end dealeren, uden at overskride 21.");
+                        Console.WriteLine("- Kort 2-10 har deres pålydende værdi, billedkort (J, Q, K) giver 10 point, og et es (A) kan være 1 eller 11, afhængigt af hvad der er bedst for hånden.");
+                        Console.WriteLine("- Hvis spillereneller dealeren overstiger 21 (bust), taber de øjeblikkeligt.");
+                        Console.WriteLine("- Når spilleren vælger stand, trækker dealeren kort, indtil hånden har en værdi på mindst 17.");
+                        Console.WriteLine("- Hvis ingen går bust, vinder den med den højeste værdi. Uafgjort resulterer i en push (ingen vinder)");
+                        Console.WriteLine("\nTryk på en tast for at fortsætte..");
+                        Console.ReadKey();
+                        break;
+                    // Afslutter programmet
+                    case 3:
+                        Console.Clear();
+                        Console.WriteLine("Tak for nu. Byebye. 👋");
+                        Environment.Exit(0);
+                        break;
+                    // Ved andre valg end mulighederne, sender fejlbesked
+                    default:
+                        Console.WriteLine("Ugyldigt valg. Tryk på en tast for at fortsætte..");
+                        Console.ReadKey();
+                        break;
+                }
             }
+            else
+            {
+                Console.WriteLine("Ugyldigt valg. Tryk på en tast for at fortsætte..");
+                Console.ReadKey();
+            }
+
+            
 
         }
     }
@@ -145,7 +158,7 @@ class Spil
                 var k = kortbunke.TrækKort();
                 spiller.Hånd.Add(k);
                 Console.WriteLine($"   {spiller.Navn} trak: {k}");
-                Console.WriteLine($" - {spiller.Navn}'s hånd: {spiller.Hånd} ({spiller.Hånd.VinderVærdi()})");
+                Console.WriteLine($" - {spiller.Navn}'s hånd: {spiller.Hånd} ({spiller.Hånd.VinderVærdi()})\n");
                 // hvis spillers værdi er for høj, så er de bust
                 if (spiller.Hånd.ErBust())
                 {
