@@ -138,16 +138,26 @@ class Spil
             return;
         }
 
-        // Sætter hanlding som ubestemt
-        bool spillerHandling = false;
-        // While løkke til når spiller tager et valg
-        while (!spillerHandling)
+        /* Så længe det er spillers tur, så kan de vælge 
+           at trække et kort (hit) eller stå (stand) */
+        bool spillersTur = false;
+        while (!spillersTur)
         {
-            // Trimmer svar fra spiller til små bogstaver
-            Console.WriteLine("Handling? (hit/stand)");
-            string handling = Console.ReadLine()?.Trim().ToLower() ?? "stand";
+            string? handling = "";
+
+            while (handling != "hit" && handling != "stand")
+            {
+                Console.WriteLine("Hit eller Stand? (hit/stand): ");
+                handling = Console.ReadLine()?.Trim().ToLower();
+
+                // Hvis handling er alt andet end "hit" eller "stand" så giv en fejlbesked og prøv igen
+                if (handling != "hit" && handling != "stand")
+                {
+                    Console.WriteLine("Ugyldigt valg. Du skal skrive enten 'hit' eller 'stand'.");
+                }
+            }
             
-            // Hvis "hit"
+            // Når spiller skriver "hit" så trækker de et kort og tilføjer det automatisk til håndsværdi
             if (handling == "hit")
             {
                 // Spiller trækker kort fra bunken og ny værdi tilføjes
@@ -163,12 +173,13 @@ class Spil
                     Console.WriteLine("Bust! Du tabte 🙁");
                     return;
                 }
+
             }
-            else
+            // Når spiller vælger "stand" så slutter de deres tur
+            else if (handling == "stand")
             {
-                // Når "hit" kaldes, tilsæt spacing
-                Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                spillerHandling = true;
+                Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+                spillersTur = true;
             }
         }
 
@@ -207,6 +218,6 @@ class Spil
     // Funktion til at fremvise Dealers hånd og værdi
     public void DealerHånd()
     {
-        Console.WriteLine($"\n - Dealers hånd: {dealer.Hånd} ({dealer.Hånd.VinderVærdi()})");
+        Console.WriteLine($" - Dealers hånd: {dealer.Hånd} ({dealer.Hånd.VinderVærdi()})");
     }
 }
