@@ -113,12 +113,12 @@ class Spil
             // Spiller vinder ved blackjack
             if (spiller.Hånd.ErBlackjack() && !dealer.Hånd.ErBlackjack())
             {
-                Console.WriteLine("Blackjack! Du vinder! 👏");
+                Console.WriteLine("Blackjack! Du vandt! 👏");
             }
             // Dealer vinder ved blakcjack
             else if (!spiller.Hånd.ErBlackjack() && dealer.Hånd.ErBlackjack())
             {
-                Console.WriteLine("Dealer har Blackjack! Du taber! 😞");
+                Console.WriteLine("Dealer har Blackjack! Du tabte! 😞");
             }
             // Uafgjort hvis begge har blackjack
             else
