@@ -23,16 +23,16 @@ Projektet er struktureret i klasser, der matcher de vigtigste koncepter i spille
 
 ## ▶️ Installation og Kørsel
 
-1. Klon repository og gå til mappen hvor der klones til:
+**1. Klon repository og gå til mappen hvor der klones til:**
 ```
 git clone https://github.com/SaneStreet/BlackJackMachine.git
 cd BlackJackMachine
 ```
-2. Åbn i VSCode eller kør i din favorit CLI:
+**2. Åbn og kør i VSCode eller kør i din favorit CLI:**
 ```
 dotnet run
 ```
-3. Følg instruktionerne i konsollen
+**3. Følg instruktionerne i konsollen**
 
 ## 🎮 Spilregler (kort fortalt)
 
