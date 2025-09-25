@@ -40,6 +40,7 @@ dotnet run
 * Spilleren kan vælge at Hit (tage et kort) eller Stand (stå).
 * Dealeren trækker kort indtil de har mindst 17 point.
 * Den, der kommer tættest på 21 uden at gå over, vinder.
+
 Mere uddybende regler i selve spillet.
 
 ## 🔮 Mulige fremtidige udvidelser
