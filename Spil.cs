@@ -4,9 +4,6 @@
     Indeholder spillets logik og flow
 */
 
-#nullable enable
-using System.Runtime.InteropServices;
-
 class Spil
 {
     private Kortbunke kortbunke = new Kortbunke();
