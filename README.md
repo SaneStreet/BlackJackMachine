@@ -23,7 +23,7 @@ Projektet er struktureret i klasser, der matcher de vigtigste koncepter i spille
 
 ## ▶️ Installation og Kørsel
 
-1. Klon repository:
+1. Klon repository og gå til mappen hvor der klones til:
 ```
 git clone https://github.com/SaneStreet/BlackJackMachine.git
 cd BlackJackMachine
