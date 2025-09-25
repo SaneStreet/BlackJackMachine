@@ -9,6 +9,7 @@ Projektet er struktureret i klasser, der matcher de vigtigste koncepter i spille
 * Kortblanding og korttræk fra et dæk med 52 kort
 * Dynamisk beregning af håndens værdi (inkl. esset som 1 eller 11)
 * Simpel konsolbrugerflade
+* Blanding af kort er der brugt [Fisher-Yates shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle) metoden
 
 ## 🏗️ Projektstruktur
 <pre>BlackJackMachine/
