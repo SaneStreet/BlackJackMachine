@@ -6,7 +6,7 @@ Projektet er struktureret i klasser, der matcher de vigtigste koncepter i spille
 ## 📌 Funktioner
 
 * Klassisk Blackjack med spiller mod dealer
-* Kort blandes med Fisher-Yates shuffle
+* Kortblanding og korttræk fra et dæk med 52 kort
 * Dynamisk beregning af håndens værdi (inkl. esset som 1 eller 11)
 * Simpel konsolbrugerflade
 
