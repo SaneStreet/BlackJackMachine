@@ -33,7 +33,6 @@ cd BlackJackMachine
 ```
 dotnet run
 ```
-**3. Følg instruktionerne i konsollen**
 
 ## 🎮 Spilregler (kort fortalt)
 
