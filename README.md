@@ -11,14 +11,14 @@ Projektet er struktureret i klasser, der matcher de vigtigste koncepter i spille
 * Simpel konsolbrugerflade
 
 ## 🏗️ Projektstruktur
-<pre> ```BlackJackMachine/
+<pre>BlackJackMachine/
 │
 ├── Program.cs        # Spillets entrypoint
 ├── Kort.cs           # Repræsenterer et kort (kulør og rang)
 ├── Kortbunke.cs      # Kortbunke med blanding og træk
 ├── Hånd.cs           # Pointberegning af kort på hånden
 ├── Spiller.cs        # Håndtere spillere og hvilke kort der er på
-└── Spil.cs           # Spillets flow og logik dertil``` </pre>
+└── Spil.cs           # Spillets flow og logik dertil</pre>
 
 
 ## ▶️ Installation og Kørsel
