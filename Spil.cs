@@ -73,7 +73,7 @@ class Spil
                     // Afslutter programmet
                     case 3:
                         Console.Clear();
-                        Console.WriteLine("Tak for nu. Byebye. 👋");
+                        Console.WriteLine("Tak for nu. Byebye. 👋\n");
                         Environment.Exit(0);
                         break;
                     // Ved andre valg end mulighederne, sender fejlbesked
@@ -161,7 +161,7 @@ class Spil
             if (handling == "hit")
             {
                 // Spiller trækker kort fra bunken og ny værdi tilføjes
-                Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                 var k = kortbunke.TrækKort();
                 spiller.Hånd.Add(k);
                 Console.WriteLine($"   {spiller.Navn} trak: {k}");
@@ -178,7 +178,7 @@ class Spil
             // Når spiller vælger "stand" så slutter de deres tur
             else if (handling == "stand")
             {
-                Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+                Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
                 spillersTur = true;
             }
         }
