@@ -24,7 +24,7 @@ class Hånd()
         // Laver Esser om til 11, hvis det er bedre værdi
         while (antalEsser > 0 && kortSum + 10 <= 21)
         {
-            kortSum += 10; // Læg 10 til standard summen af Es (1)
+            kortSum += 10;
             antalEsser--;
         }
         return kortSum;
